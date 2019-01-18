@@ -1,0 +1,40 @@
+{
+    "name": "born05/craft-enforcepassword",
+    "description": "Incrementally enforced new and secure passwords.",
+    "type": "craft-plugin",
+    "version": "1.0.0-beta.1",
+    "keywords": [
+        "craft",
+        "cms",
+        "craftcms",
+        "craft-plugin",
+        "password",
+        "password history"
+    ],
+    "support": {
+        "docs": "https://github.com/born05/craft-enforcepassword/blob/master/README.md",
+        "issues": "https://github.com/born05/craft-enforcepassword/issues"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Born05",
+            "homepage": "https://www.born05.com/"
+        }
+    ],
+    "require": {
+        "craftcms/cms": "^3.0.0"
+    },
+    "autoload": {
+        "psr-4": {
+          "born05\\enforcepassword\\": "src/"
+        }
+    },
+    "extra": {
+        "name": "Enforce password",
+        "handle": "enforce-password",
+        "hasCpSettings": false,
+        "hasCpSection": false,
+        "changelogUrl": "https://raw.githubusercontent.com/born05/craft-enforcepassword/master/CHANGELOG.md"
+    }
+}
