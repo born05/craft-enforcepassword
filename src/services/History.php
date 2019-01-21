@@ -16,8 +16,8 @@ class History extends Component
 {
     public function queuePasswordResets()
     {
-        // Only trigger when lifetime is larger than 0, false or null.
-        if (!(EnforcePassword::$plugin->getSettings()->passwordMaxLifetime > 0)) {
+        // Only trigger when lifetime is larger than 0
+        if (EnforcePassword::$plugin->getSettings()->passwordMaxLifetime === 0) {
             return;
         }
 
@@ -48,6 +48,7 @@ class History extends Component
      */
     public function isPasswordUsed(User $user, string $newPassword)
     {
+        // Only trigger when history is larger than 0
         $settings = EnforcePassword::$plugin->getSettings();
         if ($settings->passwordHistoryLimit === 0) {
             return false;
@@ -76,19 +77,32 @@ class History extends Component
      */
     public function updateHistoryByUser(User $user)
     {
+        // Only trigger when history is larger than 0
         $settings = EnforcePassword::$plugin->getSettings();
-        
-        // Add new password
-        if ($settings->passwordHistoryLimit > 0) {
-            $passwordRecord = new PasswordRecord();
-            $passwordRecord->userId = $user->id;
-            $passwordRecord->password = $user->password;
-            $passwordRecord->save();
+        if ($settings->passwordHistoryLimit === 0) {
+            return false;
         }
+
+        // Determine if this password is new.
+        $matchingPassword = PasswordRecord::find()
+            ->where(['userId' => $user->id])
+            ->andWhere(['password' => $user->password])
+            ->one();
+
+        // Password already in history.
+        if (!empty($matchingPassword)) {
+            return;
+        }
+
+        // Add new password
+        $passwordRecord = new PasswordRecord();
+        $passwordRecord->userId = $user->id;
+        $passwordRecord->password = $user->password;
+        $passwordRecord->save();
 
         $oldPasswordRecords = PasswordRecord::find()
             ->where(['userId' => $user->id])
-            ->orderBy(['dateCreated' => 'desc'])
+            ->orderBy(['dateCreated' => SORT_DESC])
             ->all();
 
         // Delete passwords beyond the limit.

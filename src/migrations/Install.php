@@ -6,8 +6,7 @@ use born05\enforcepassword\records\Password as PasswordRecord;
 
 use craft\db\Migration;
 use craft\db\Query;
-use craft\elements\User as UserElement;
-use craft\records\User as UserRecord;
+use craft\elements\User;
 use craft\helpers\MigrationHelper;
 
 class Install extends Migration
@@ -25,11 +24,14 @@ class Install extends Migration
 
         $this->addForeignKey(null, PasswordRecord::tableName(), ['userId'], '{{%users}}', ['id'], 'CASCADE', null);
 
-        $userRecords = UserRecord::find()->all();
-        foreach ($userRecords as $userRecord) {
+        $users = User::find()
+            ->addSelect(['users.password'])
+            ->anyStatus()
+            ->all();
+        foreach ($users as $user) {
             $passwordRecord = new PasswordRecord();
-            $passwordRecord->userId = $userRecord->id;
-            $passwordRecord->password = $userRecord->password;
+            $passwordRecord->userId = $user->id;
+            $passwordRecord->password = $user->password;
             $passwordRecord->save();
         }
     }

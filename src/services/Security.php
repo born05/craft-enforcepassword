@@ -22,26 +22,26 @@ class Security extends Component
         $settings = EnforcePassword::$plugin->getSettings();
 
         if (mb_strlen($password) < $settings->passwordMinLength) {
-            $user->addError('password', Craft::t('enforce-password', "Password should be at least {length} characters.", [ 'length' => $settings->passwordMinLength ]));
+            $user->addError('newPassword', Craft::t('enforce-password', "Password should be at least {length} characters.", [ 'length' => $settings->passwordMinLength ]));
         }
         if (mb_strlen($password) > $settings->passwordMaxLength) {
-            $user->addError('password', Craft::t('enforce-password', "Password should be less than {length} characters.", [ 'length' => $settings->passwordMaxLength ]));
+            $user->addError('newPassword', Craft::t('enforce-password', "Password should be less than {length} characters.", [ 'length' => $settings->passwordMaxLength ]));
         }
         if (preg_match('/[A-Z]/', $password) !== 1) {
-            $user->addError('password', Craft::t('enforce-password', "Password should contain at least 1 uppercase character."));
+            $user->addError('newPassword', Craft::t('enforce-password', "Password should contain at least 1 uppercase character."));
         }
         if (preg_match('/[a-z]/', $password) !== 1) {
-            $user->addError('password', Craft::t('enforce-password', "Password should contain at least 1 lowercase character."));
+            $user->addError('newPassword', Craft::t('enforce-password', "Password should contain at least 1 lowercase character."));
         }
         if (preg_match('/\d/', $password) !== 1) {
-            $user->addError('password', Craft::t('enforce-password', "Password should contain at least 1 digit."));
+            $user->addError('newPassword', Craft::t('enforce-password', "Password should contain at least 1 digit."));
         }
         if (preg_match('/[^a-zA-Z\d]/', $password) !== 1) {
-            $user->addError('password', Craft::t('enforce-password', "Password should contain at least 1 symbol."));
+            $user->addError('newPassword', Craft::t('enforce-password', "Password should contain at least 1 symbol."));
         }
 
         if ($user->email === $password || $user->username === $password) {
-            $user->addError('password', Craft::t('enforce-password', "Password can't be the same as your username or email."));
+            $user->addError('newPassword', Craft::t('enforce-password', "Password can't be the same as your username or email."));
         }
 
         if (EnforcePassword::$plugin->history->isPasswordUsed($user, $password)) {
