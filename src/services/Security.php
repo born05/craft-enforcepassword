@@ -19,8 +19,13 @@ class Security extends Component
      */
     public function validatePassword(User $user, string $password)
     {
-        if (mb_strlen($password) < 16) {
-            $user->addError('password', Craft::t('enforce-password', "Password should be at least 16 characters."));
+        $settings = EnforcePassword::$plugin->getSettings();
+
+        if (mb_strlen($password) < $settings->passwordMinLength) {
+            $user->addError('password', Craft::t('enforce-password', "Password should be at least {length} characters.", [ 'length' => $settings->passwordMinLength ]));
+        }
+        if (mb_strlen($password) > $settings->passwordMaxLength) {
+            $user->addError('password', Craft::t('enforce-password', "Password should be less than {length} characters.", [ 'length' => $settings->passwordMaxLength ]));
         }
         if (preg_match('/[A-Z]/', $password) !== 1) {
             $user->addError('password', Craft::t('enforce-password', "Password should contain at least 1 uppercase character."));

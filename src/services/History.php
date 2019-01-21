@@ -2,15 +2,43 @@
 
 namespace born05\enforcepassword\services;
 
+use born05\enforcepassword\Plugin as EnforcePassword;
+use born05\enforcepassword\jobs\RequirePasswordReset;
 use born05\enforcepassword\records\Password as PasswordRecord;
 
 use Craft;
 use craft\base\Component;
 use craft\db\Query;
 use craft\elements\User;
+use craft\helpers\DateTimeHelper;
 
 class History extends Component
 {
+    public function queuePasswordResets()
+    {
+        // Only trigger when lifetime is larger than 0, false or null.
+        if (!(EnforcePassword::$plugin->getSettings()->passwordMaxLifetime > 0)) {
+            return;
+        }
+
+        // Run this taks every day.
+        $lastDate = Craft::$app->getCache()->get('enforcepassword_taskdate');
+        $now = DateTimeHelper::currentUTCDateTime();
+
+        if ($lastDate instanceof \DateTime) {
+            $yesterday = $now->sub(new \DateInterval('P1D'));
+            $yesterday->setTime(0, 0, 1);
+
+            if ($lastDate < $yesterday) {
+                Craft::$app->getCache()->set('enforcepassword_taskdate', $now);
+                Craft::$app->getQueue()->push(new RequirePasswordReset());
+            }
+        } else {
+            Craft::$app->getCache()->set('enforcepassword_taskdate', $now);
+            Craft::$app->getQueue()->push(new RequirePasswordReset());
+        }
+    }
+
     /**
      * Determines if an password is used before.
      *
@@ -20,6 +48,11 @@ class History extends Component
      */
     public function isPasswordUsed(User $user, string $newPassword)
     {
+        $settings = EnforcePassword::$plugin->getSettings();
+        if ($settings->passwordHistoryLimit === 0) {
+            return false;
+        }
+
         $oldPasswords = (new Query())
             ->select(['password'])
             ->from([PasswordRecord::tableName()])
@@ -43,11 +76,15 @@ class History extends Component
      */
     public function updateHistoryByUser(User $user)
     {
+        $settings = EnforcePassword::$plugin->getSettings();
+        
         // Add new password
-        $passwordRecord = new PasswordRecord();
-        $passwordRecord->userId = $user->id;
-        $passwordRecord->password = $user->password;
-        $passwordRecord->save();
+        if ($settings->passwordHistoryLimit > 0) {
+            $passwordRecord = new PasswordRecord();
+            $passwordRecord->userId = $user->id;
+            $passwordRecord->password = $user->password;
+            $passwordRecord->save();
+        }
 
         $oldPasswordRecords = PasswordRecord::find()
             ->where(['userId' => $user->id])
@@ -59,11 +96,9 @@ class History extends Component
         foreach ($oldPasswordRecords as $oldPasswordRecord) {
             $count++;
 
-            if ($count >= 5) {
+            if ($count >= $settings->passwordHistoryLimit) {
                 $oldPasswordRecord->delete();
             }
         }
     }
 }
-
-// $user->passwordResetRequired = true;

@@ -1,7 +1,8 @@
 <?php
 
 return [
-    "Password should be at least 16 characters." => "Password should be at least 16 characters.",
+    "Password should be at least {length} characters." => "Password should be at least {length} characters.",
+    "Password should be less than {length} characters." => "Password should be less than {length} characters.",
     "Password can't be the same as your username or email." => "Password can't be the same as your username or email.",
     "Password should contain at least 1 uppercase character." => "Password should contain at least 1 uppercase character.",
     "Password should contain at least 1 lowercase character." => "Password should contain at least 1 lowercase character.",

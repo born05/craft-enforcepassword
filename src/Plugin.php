@@ -2,6 +2,7 @@
 
 namespace born05\enforcepassword;
 
+use born05\enforcepassword\models\Settings;
 use born05\enforcepassword\services\History;
 use born05\enforcepassword\services\Security;
 
@@ -40,10 +41,17 @@ class Plugin extends CraftPlugin
         }
 
         // Register Components (Services)
-        $this->setComponents([
-            'history' => History::class,
-            'security' => Security::class,
-        ]);
+        $this->setComponents(
+            [
+                'history' => History::class,
+                'security' => Security::class,
+            ]
+        );
+
+        // Only try to trigger jobs from the admin.
+        if (Craft::$app->getRequest()->getIsCpRequest()) {
+            $this->history->queuePasswordResets();
+        }
 
         Event::on(
             UserElement::class,
@@ -69,5 +77,13 @@ class Plugin extends CraftPlugin
                 $this->history->updateHistoryByUser($user);
             }
         );
+    }
+
+    /**
+     * @inheritdoc
+     */
+    protected function createSettingsModel()
+    {
+        return new Settings();
     }
 }
