@@ -18,7 +18,7 @@ class Plugin extends CraftPlugin
     /**
      * @var string
      */
-    public $schemaVersion = '1.0.0';
+    public $schemaVersion = '1.0.0-beta.5';
 
     /**
      * Static property that is an instance of this plugin class so that it can be accessed via

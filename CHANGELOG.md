@@ -1,5 +1,9 @@
 # Enforce Password Changelog
 
+## 1.0.0-beta.5 - 2019-01-22
+### Fixed
+- Fix uninstall
+
 ## 1.0.0-beta.4 - 2019-01-22
 ### Fixed
 - Migration name fix.

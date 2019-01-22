@@ -28,6 +28,6 @@ class m190122_095600_cleanup_history extends Migration
 
     public function safeDown()
     {
-        return false;
+        return true;
     }
 }

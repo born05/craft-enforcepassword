@@ -38,7 +38,7 @@ class Install extends Migration
 
     public function safeDown()
     {
-        $this->dropTableIfExists(Password::tableName());
+        $this->dropTableIfExists(PasswordRecord::tableName());
 
         return true;
     }
