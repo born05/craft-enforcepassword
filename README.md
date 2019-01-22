@@ -1,6 +1,7 @@
 # Craft Enforce Password plugin
 
 Incrementally enforces a new and secure password not matching the last 5 passwords.
+Stores password history in a database table.
 
 Validates passwords by the following:
 - Minimal length
@@ -22,7 +23,8 @@ Create a `config/enforce-password.php` with the following contents:
 return [
     'passwordMinLength'    => 16,
     'passwordMaxLength'    => 255,
-    'passwordHistoryLimit' => 5,
+    'passwordHistoryLimit' => 5, // Number of passwords kept in history
+    'passwordMaxLifetime'  => 90, // Number of days a password can be used
 ];
 ```
 
