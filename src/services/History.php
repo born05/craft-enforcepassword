@@ -95,10 +95,12 @@ class History extends Component
         }
 
         // Add new password
-        $passwordRecord = new PasswordRecord();
-        $passwordRecord->userId = $user->id;
-        $passwordRecord->password = $user->password;
-        $passwordRecord->save();
+        if (!empty($user->password)) {
+            $passwordRecord = new PasswordRecord();
+            $passwordRecord->userId = $user->id;
+            $passwordRecord->password = $user->password;
+            $passwordRecord->save();
+        }
 
         $oldPasswordRecords = PasswordRecord::find()
             ->where(['userId' => $user->id])
