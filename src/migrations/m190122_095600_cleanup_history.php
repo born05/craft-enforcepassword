@@ -9,7 +9,7 @@ use craft\db\Query;
 use craft\elements\User;
 use craft\helpers\MigrationHelper;
 
-class m190122_095600_CleanupHistory extends Migration
+class m190122_095600_cleanup_history extends Migration
 {
     public function safeUp()
     {

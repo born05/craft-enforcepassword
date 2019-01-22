@@ -1,5 +1,9 @@
 # Enforce Password Changelog
 
+## 1.0.0-beta.4 - 2019-01-22
+### Fixed
+- Migration name fix.
+
 ## 1.0.0-beta.3 - 2019-01-22
 ### Fixed
 - Migration return fix.
