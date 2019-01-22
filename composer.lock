@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0d044f986f469908ce102ac028200738",
+    "content-hash": "3321d69096574420db8758a54d7f6d2c",
     "packages": [
         {
             "name": "cebe/markdown",
@@ -324,16 +324,16 @@
         },
         {
             "name": "craftcms/cms",
-            "version": "3.1.1",
+            "version": "3.1.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/craftcms/cms.git",
-                "reference": "5e4ccf24c0bf5aab08793017feeaac30164b9fe6"
+                "reference": "0d7c54f05c5854568edd841b65d55e6eff06a9e3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/craftcms/cms/zipball/5e4ccf24c0bf5aab08793017feeaac30164b9fe6",
-                "reference": "5e4ccf24c0bf5aab08793017feeaac30164b9fe6",
+                "url": "https://api.github.com/repos/craftcms/cms/zipball/0d7c54f05c5854568edd841b65d55e6eff06a9e3",
+                "reference": "0d7c54f05c5854568edd841b65d55e6eff06a9e3",
                 "shasum": ""
             },
             "require": {
@@ -408,7 +408,7 @@
                 "craftcms",
                 "yii2"
             ],
-            "time": "2019-01-17T00:54:40+00:00"
+            "time": "2019-01-21T22:17:45+00:00"
         },
         {
             "name": "craftcms/oauth2-craftid",
