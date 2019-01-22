@@ -22,6 +22,8 @@ class m190122_095600_CleanupHistory extends Migration
                 $oldPasswordRecord->delete();
             }
         }
+
+        return true;
     }
 
     public function safeDown()
