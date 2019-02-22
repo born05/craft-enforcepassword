@@ -1,5 +1,9 @@
 # Enforce Password Changelog
 
+## 1.0.0 - 2019-02-22
+### Changed
+- Stable release
+
 ## 1.0.0-beta.5 - 2019-01-22
 ### Fixed
 - Fix uninstall
