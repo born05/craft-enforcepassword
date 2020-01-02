@@ -27,5 +27,8 @@ return [
     'passwordMaxLifetime'  => 90, // Number of days a password can be used
 ];
 ```
+## License
+
+Copyright © [Born05](https://www.born05.com/)
 
 See [license](https://github.com/born05/craft-enforcepassword/blob/master/LICENSE.md)
