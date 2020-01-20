@@ -27,6 +27,13 @@ return [
     'passwordMaxLifetime'  => 90, // Number of days a password can be used
 ];
 ```
+
+## Commandline usage
+
+```sh
+craft enforce-password/default
+```
+
 ## License
 
 Copyright © [Born05](https://www.born05.com/)

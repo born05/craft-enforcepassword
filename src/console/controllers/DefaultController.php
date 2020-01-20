@@ -9,12 +9,13 @@ use yii\console\Controller;
 use yii\helpers\Console;
 
 /**
- * Default Command
- * 
- * ./craft enforce-password/default
+ * Enforces password resets.
  */
 class DefaultController extends Controller
 {
+    /**
+     * Queue's the password reset task.
+     */
     public function actionIndex()
     {
         echo "Queue password resets.\n";
