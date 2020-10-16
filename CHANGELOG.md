@@ -1,5 +1,9 @@
 # Enforce Password Changelog
 
+## 1.0.1 - 2020-10-16
+### Changed
+- Don't do anything until EVENT_AFTER_LOAD_PLUGINS
+
 ## 1.0.0 - 2019-02-22
 ### Changed
 - Stable release
