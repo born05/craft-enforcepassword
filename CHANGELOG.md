@@ -1,5 +1,9 @@
 # Enforce Password Changelog
 
+## 1.0.1.1 - 2020-11-03
+### Fixed
+- Fixed composer.json for composer 2
+
 ## 1.0.1 - 2020-10-16
 ### Changed
 - Don't do anything until EVENT_AFTER_LOAD_PLUGINS
