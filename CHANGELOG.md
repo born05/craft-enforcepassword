@@ -1,5 +1,9 @@
 # Enforce Password Changelog
 
+## 1.0.2 - 2020-11-05
+### Fixed
+- Fixed Dutch translations
+
 ## 1.0.1.1 - 2020-11-03
 ### Fixed
 - Fixed composer.json for composer 2
