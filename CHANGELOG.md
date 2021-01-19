@@ -1,5 +1,9 @@
 # Enforce Password Changelog
 
+## 1.0.3 - 2021-01-19
+### Fixed
+- Prevent empty password history records on install
+
 ## 1.0.2 - 2020-11-05
 ### Fixed
 - Fixed Dutch translations

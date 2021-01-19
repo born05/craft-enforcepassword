@@ -29,10 +29,12 @@ class Install extends Migration
             ->anyStatus()
             ->all();
         foreach ($users as $user) {
-            $passwordRecord = new PasswordRecord();
-            $passwordRecord->userId = $user->id;
-            $passwordRecord->password = $user->password;
-            $passwordRecord->save();
+            if (!empty($user->password)) {
+                $passwordRecord = new PasswordRecord();
+                $passwordRecord->userId = $user->id;
+                $passwordRecord->password = $user->password;
+                $passwordRecord->save();
+            }
         }
     }
 
