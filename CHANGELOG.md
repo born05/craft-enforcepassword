@@ -1,5 +1,9 @@
 # Enforce Password Changelog
 
+## 1.0.4 - 2021-01-26
+### Changed
+- More settings added
+
 ## 1.0.3 - 2021-01-19
 ### Fixed
 - Prevent empty password history records on install

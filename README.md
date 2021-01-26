@@ -21,10 +21,15 @@ Create a `config/enforce-password.php` with the following contents:
 <?php
 
 return [
-    'passwordMinLength'    => 16,
-    'passwordMaxLength'    => 255,
-    'passwordHistoryLimit' => 5, // Number of passwords kept in history
-    'passwordMaxLifetime'  => 90, // Number of days a password can be used
+    'passwordMinLength'     => 16,
+    'passwordMaxLength'     => 255,
+    'passwordHistoryLimit'  => 5, // Number of passwords kept in history
+    'passwordMaxLifetime'   => 90, // Number of days a password can be used
+    'enforceUppercase'      => true, // Min 1 uppercase letter 
+    'enforceLowercase'      => true, // Min 1 lowercase letter
+    'enforceDigit'          => true, // Min 1 digit
+    'enforceSymbol'         => true, // Min 1 symbol
+    'enforceUniquePassword' => true; // An password never used before by the user
 ];
 ```
 
