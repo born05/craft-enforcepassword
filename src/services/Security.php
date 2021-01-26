@@ -44,7 +44,7 @@ class Security extends Component
             $user->addError('newPassword', Craft::t('enforce-password', "Password can't be the same as your username or email."));
         }
 
-        if ($settings->enforceUniquePassword && EnforcePassword::$plugin->history->isPasswordUsed($user, $password)) {
+        if (EnforcePassword::$plugin->history->isPasswordUsed($user, $password)) {
             $user->addError('newPassword', Craft::t('enforce-password', "Please choose a password you didn't use before."));
         }
 
