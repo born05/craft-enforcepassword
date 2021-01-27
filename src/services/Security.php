@@ -24,7 +24,7 @@ class Security extends Component
         if (mb_strlen($password) < $settings->passwordMinLength) {
             $user->addError('newPassword', Craft::t('enforce-password', "Password should be at least {length} characters.", [ 'length' => $settings->passwordMinLength ]));
         }
-        if ($settings->enforce && mb_strlen($password) > $settings->passwordMaxLength) {
+        if (mb_strlen($password) > $settings->passwordMaxLength) {
             $user->addError('newPassword', Craft::t('enforce-password', "Password should be less than {length} characters.", [ 'length' => $settings->passwordMaxLength ]));
         }
         if ($settings->enforceUppercase && preg_match('/[A-Z]/', $password) !== 1) {
