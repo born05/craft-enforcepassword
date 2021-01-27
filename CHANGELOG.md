@@ -1,6 +1,10 @@
 # Enforce Password Changelog
 
 ## 1.0.4 - 2021-01-26
+### Fixed
+- "Getting unknown property Settings::enforce" Error fixed
+
+## 1.0.4 - 2021-01-26
 ### Changed
 - More settings added
 
