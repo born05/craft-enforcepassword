@@ -16,10 +16,7 @@ use yii\base\ModelEvent;
 
 class Plugin extends CraftPlugin
 {
-    /**
-     * @var string
-     */
-    public $schemaVersion = '1.0.0';
+    public string $schemaVersion = '1.0.0';
 
     /**
      * Static property that is an instance of this plugin class so that it can be accessed via
@@ -27,7 +24,7 @@ class Plugin extends CraftPlugin
      *
      * @var Plugin
      */
-    public static $plugin;
+    public static Plugin $plugin;
 
     /**
      * @inheritdoc
@@ -85,7 +82,7 @@ class Plugin extends CraftPlugin
     /**
      * @inheritdoc
      */
-    protected function createSettingsModel()
+    protected function createSettingsModel(): Settings
     {
         return new Settings();
     }

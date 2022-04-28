@@ -3,7 +3,6 @@
 namespace born05\enforcepassword\jobs;
 
 use born05\enforcepassword\Plugin as EnforcePassword;
-use born05\enforcepassword\records\Password as PasswordRecord;
 
 use Craft;
 use craft\elements\User;
@@ -16,7 +15,7 @@ class RequirePasswordReset extends BaseJob
     /**
      * @inheritdoc
      */
-    public function execute($queue)
+    public function execute($queue): void
     {
         $settings = EnforcePassword::$plugin->getSettings();
 
