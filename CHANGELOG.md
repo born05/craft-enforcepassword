@@ -1,5 +1,9 @@
 # Enforce Password Changelog
 
+## 2.0.0-beta.1 - 2022-05-09
+### Changed
+- Added craft 4 support
+
 ## 1.0.4 - 2021-01-26
 ### Fixed
 - "Getting unknown property Settings::enforce" Error fixed
