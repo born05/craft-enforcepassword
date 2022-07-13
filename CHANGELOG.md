@@ -1,5 +1,9 @@
 # Enforce Password Changelog
 
+## 2.0.0 - 2022-07-13
+### Fixed
+- Plugin load event
+
 ## 2.0.0-beta.1 - 2022-05-09
 ### Changed
 - Added craft 4 support
