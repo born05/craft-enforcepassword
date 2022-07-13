@@ -9,7 +9,7 @@ use born05\enforcepassword\services\Security;
 use Craft;
 use craft\base\Plugin as CraftPlugin;
 use craft\elements\User as UserElement;
-use craft\services\Plugins;
+use craft\web\Application as WebApplication;
 
 use yii\base\Event;
 use yii\base\ModelEvent;
@@ -46,7 +46,7 @@ class Plugin extends CraftPlugin
             ]
         );
 
-        Event::on(Plugins::class, Plugins::EVENT_AFTER_LOAD_PLUGINS, function () {
+        Event::on(WebApplication::class, WebApplication::EVENT_INIT, function () {
             // Only try to trigger jobs from the admin.
             if (Craft::$app->getRequest()->getIsCpRequest()) {
                 $this->history->queuePasswordResets();
