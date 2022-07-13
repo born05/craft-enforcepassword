@@ -5,9 +5,7 @@ namespace born05\enforcepassword\migrations;
 use born05\enforcepassword\records\Password as PasswordRecord;
 
 use craft\db\Migration;
-use craft\db\Query;
 use craft\elements\User;
-use craft\helpers\MigrationHelper;
 
 class Install extends Migration
 {
@@ -26,7 +24,7 @@ class Install extends Migration
 
         $users = User::find()
             ->addSelect(['users.password'])
-            ->anyStatus()
+            ->status(null)
             ->all();
         foreach ($users as $user) {
             if (!empty($user->password)) {

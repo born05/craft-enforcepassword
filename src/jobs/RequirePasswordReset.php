@@ -33,7 +33,7 @@ class RequirePasswordReset extends BaseJob
                 '<', 'lastPasswordChangeDate', Db::prepareValueForDb($maxLifetime)
             ])
             ->andWhere(['passwordResetRequired' => false])
-            ->anyStatus()
+            ->status(null)
             ->all();
 
         $currentRow = 0;
